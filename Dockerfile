@@ -7,8 +7,6 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install apt-utils -y
 RUN apt-get install tzdata -y
-#RUN echo "Asia/Ho_Chi_Minh" > /etc/timezone
-#RUN apt-get install python -y
 RUN apt-get install redis-server -y
 WORKDIR /venv
 COPY start.sh /venv
@@ -17,4 +15,4 @@ RUN chmod a+x /venv/*
 ENV TZ=Asia/Ho_Chi_Minh
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENTRYPOINT ["/venv/start.sh"]
-EXPOSE 80 6379
+EXPOSE 6379
